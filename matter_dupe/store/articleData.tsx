@@ -1,11 +1,16 @@
 import {create} from 'zustand';
-import {Article} from '../types/Article';
-
+import { Article } from '../types/Article';
 type BookmarkState = {
     bookmarks: Article[];
     toggleBookmark: (article: Article) => void;
     getBookmarks: () => Article[];
     isBookmarked: (articleId: number) => boolean;
+};
+
+type ArticleState = {
+    articles: Article[];
+
+    getArticles: () => Article[];
 };
 
 export const useBookmarkStore = create<BookmarkState>((set,get) => ({
@@ -21,4 +26,10 @@ export const useBookmarkStore = create<BookmarkState>((set,get) => ({
     isBookmarked: (articleId) => {
         return get().bookmarks.some((item) => item.id === articleId);
     }
+}));
+
+export const useArticleStore = create<ArticleState>((set, get) => ({
+    articles: [],
+
+    getArticles: () => get().articles,
 }));

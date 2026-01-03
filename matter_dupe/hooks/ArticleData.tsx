@@ -1,7 +1,6 @@
 //to do
 import {useNavigation} from '@react-navigation/native';
-import { useBookmarkStore } from '../store/articleData';
-import { Article } from '../types/Article';
+import { useArticleStore, useBookmarkStore } from '../store/articleData';
 
 export function useBookmarks() {
     const navigation = useNavigation();
@@ -10,7 +9,7 @@ export function useBookmarks() {
     const bookmarks = getBookmarks();
 
       const openArticle = (articleId: number) => {
-        navigation.navigate("Article", { id: articleId } );//fix?
+        navigation.navigate("Article", { id: articleId });
     };
 
 
@@ -21,3 +20,5 @@ export function useBookmarks() {
         openArticle
     };
 }
+
+

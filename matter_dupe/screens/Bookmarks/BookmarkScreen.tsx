@@ -2,14 +2,16 @@ import React, { use } from 'react';
 import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
 import {ArticleTile} from '../../components/ArticleTile';
 import {useBookmarks} from '../../hooks/ArticleData';
+import {Header} from '../../components/Header';
 
 //make the titles consistent in the components
-export function BookmarkScreen() {
+export function BookmarksScreen() {
     const {bookmarks, openArticle} = useBookmarks();
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Bookmarks</Text>
+            <Header title="Bookmarks" />
+
             <FlatList
                 data={bookmarks}
                 renderItem={({ item }) => (
@@ -20,10 +22,10 @@ export function BookmarkScreen() {
                         vibe={item.vibe}
                         readingTime={item.readingTime}
                         newsletterName={item.newsletterName}
-                        onPress={() => clickArticle(item.id)}
+                        onPress={() => openArticle(item.id)}
                     />
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => item.id.toString()}
                 contentContainerStyle={styles.list}
             />
         </View>
@@ -31,8 +33,16 @@ export function BookmarkScreen() {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "#f8ecddff", paddingTop: 60, paddingHorizontal: 18 },
-    title: { fontSize: 28, fontWeight: "500", marginBottom: 18 }, //comment out once we have consistency
-    list: { paddingBottom: 24 },
+  container: {
+    flex: 1,
+    backgroundColor: "#FBF7F2", 
+    paddingTop: 75,
+    paddingHorizontal: 20,
+  },
+
+  list: {
+    paddingBottom: 32,
+  },
+
 
 });
